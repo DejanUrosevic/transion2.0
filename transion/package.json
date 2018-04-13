@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axis": "^1.0.0",
+    "axios": "0.18.0",
     "history": "4.7.2",
     "material-ui": "1.0.0-beta.41",
     "material-ui-icons": "1.0.0-beta.36",
@@ -16,7 +16,8 @@
     "react-scripts": "1.1.4",
     "redux": "3.7.2",
     "redux-devtools-extension": "2.13.2",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "yarn": "^1.5.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import LogInForm from './LogInForm';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import './LogInStyle.css';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import {login} from '../../actions/userAction';
 
 class LogInComponent extends Component {
+
+    login = data => {
+        console.log(data);
+        this.props.login(data);
+    }
+
     render() {
         return (
             <div className="container">
@@ -16,8 +26,8 @@ class LogInComponent extends Component {
                             <h2> Prijavi se </h2>
                         </div>
 
-                        <hr  />
-                            <LogInForm />
+                        <hr className="login_type" />
+                        <LogInForm submit={this.login}/>
                     </div>
                 </div>
             </div>
@@ -25,4 +35,8 @@ class LogInComponent extends Component {
     }
 }
 
-export default LogInComponent;
+LogInComponent.propTypes = {
+    login : PropTypes.func.isRequired
+  };
+
+export default connect(null, {login})(LogInComponent);
