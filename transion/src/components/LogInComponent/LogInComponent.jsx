@@ -8,9 +8,18 @@ import {login} from '../../actions/userAction';
 
 class LogInComponent extends Component {
 
-    login = data => {
+    constructor(props) {
+        super(props)
+    }
+    
+
+    login = (data) => {
         console.log(data);
         this.props.login(data);
+    }
+
+    goOnSingUp = () =>{
+        this.props.history.push("/registracija");
     }
 
     render() {
@@ -27,7 +36,7 @@ class LogInComponent extends Component {
                         </div>
 
                         <hr className="login_type" />
-                        <LogInForm submit={this.login}/>
+                        <LogInForm submit={this.login} goOnSingUp={this.goOnSingUp}/>
                     </div>
                 </div>
             </div>

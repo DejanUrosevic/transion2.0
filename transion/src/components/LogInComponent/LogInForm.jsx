@@ -24,7 +24,12 @@ export default class LogInForm extends Component {
             this.props.submit(this.state.data);
         }*/
     }
-    
+
+    goOnSingUp = (e) => {
+        e.preventDefault();
+        this.props.goOnSingUp();
+    }
+
     render() {
         const { data } = this.state;
         return (
@@ -60,7 +65,7 @@ export default class LogInForm extends Component {
                         <hr className="login_type" />
 
                         <p style={{marginTop: '20px'}}> Nemate nalog?
-                            <a > Napravite ga sada.</a>
+                            <a onClick={this.goOnSingUp}> Napravite ga sada.</a>
                         </p>
                     </div>
                            
@@ -70,5 +75,6 @@ export default class LogInForm extends Component {
 }
 
 LogInForm.propTypes = {
-    submit : PropTypes.func.isRequred
+    submit :PropTypes.func.isRequred,
+    goOnSingUp : PropTypes.func.isRequired
 }
