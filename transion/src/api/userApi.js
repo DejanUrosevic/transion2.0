@@ -8,5 +8,8 @@ export default {
                 localStorage.setItem("token", response.headers.authorization);
                 return response.data;
             })
+            .catch(error => {
+                console.log(error);
+            })
     }
 }

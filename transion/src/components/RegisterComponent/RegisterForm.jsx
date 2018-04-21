@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
+import Form from 'muicss/lib/react/form';
+import Input from 'muicss/lib/react/input';
+//import Button from 'material-ui/Button';
+import Button from 'muicss/lib/react/button';
+import PropTypes from 'prop-types';
 
-class RegisterForm extends Component {
+export default class RegisterForm extends Component {
     state = {
-        step1 : true,
-        step2 : false,
-        step3 : false,
         data :{
-            email: '', 
+            firstname: '',
+            lastname: '',
+            username: '',
+            parentsName: '',
+            citizenship: '',
+            sex: '',
+            education: '',
             password: '',
-            potvrdaLozinka: '',
-            agencyName: '',
-            agencyFullName: '',
-            pib: '',
-            agencyUniqueNumber: '',
-            agencyAccountNumber: '',
-            agencyCodeActivity: '',
-            dateOfRegistration: '',
-            address: '',
-            street: '',
-            streetNumber: '',
-            phone: '',
-            agencyEmail: ''
-        }
+            jmbg: '',
+            email: '',
+            phoneNumber: ''
+        },
+        potvrdaLozinka: ''
 
     };
 
@@ -31,215 +29,136 @@ class RegisterForm extends Component {
         this.setState({
             data : { ...this.state.data, [e.target.name] : e.target.value}
         });
-
-    goStepTwo = () => {
-        this.setState({
-            step1 : false,
-            step2 : true
-        })
+    
+    onSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state.data + " : " + this.state.potvrdaLozinka);
     }
 
     render() { 
-        const {data} = this.state;
+        const {data, potvrdaLozinka} = this.state;
         return (  
-            <div>
-                { this.state.step1 ? 
+            <Form onSubmit={this.onSubmit}> 
                 <div>
-                    <div>
-                        <TextField
-                            required
-                            id="email"
-                            name="email"
-                            label="Email"
-                            placeholder="example@transion.com"
-                            margin="normal"
-                            value={data.email}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="lozinka"
-                            name="password"
-                            label="Lozinka"
-                            placeholder="Lozinka"
-                            margin="normal"
-                            value={data.password}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="potvrdaLozinke"
-                            name="potvrdaLozinke"
-                            label="Potvrda lozinke"
-                            placeholder="Potvrda lozinke"
-                            margin="normal"
-                            value={data.potvrdaLozinka}
-                            onChange={this.onChange}
-                        /><br />
-                    </div>
-                    <div align="center">
-                        <Button 
-                            type="submit"
-                            variant="raised" 
-                            color="primary" 
-                            onClick={this.goStepTwo}>Sledeci korak
-                        </Button>
-                    </div>
-                    <div style={{marginTop: '30px'}} align="center">
-                        <Button 
-                            type="submit"
-                            variant="raised" 
-                            color="primary" >Nazad
-                        </Button>
-                    </div> 
+                    <TextField
+                        required
+                        id="firstname"
+                        name="firstname"
+                        label="Ime"
+                        margin="normal"
+                        value={data.firstname}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="parentsName"
+                        name="parentsName"
+                        label="Ime roditelja"
+                        margin="normal"
+                        value={data.parentsName}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="lastname"
+                        name="lastname"
+                        label="Prezime"
+                        margin="normal"
+                        value={data.lastname}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="citizenship"
+                        name="citizenship"
+                        label="Državljanstvo"
+                        margin="normal"
+                        value={data.citizenship}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="sex"
+                        name="sex"
+                        label="Pol"
+                        margin="normal"
+                        value={data.sex}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="education"
+                        name="education"
+                        label="Obrazovanje"
+                        margin="normal"
+                        value={data.education}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="jmbg"
+                        name="jmbg"
+                        label="JMBG"
+                        margin="normal"
+                        value={data.jmbg}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="email"
+                        name="email"
+                        label="E-mail"
+                        margin="normal"
+                        value={data.email}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        label="Telefon"
+                        margin="normal"
+                        value={data.phoneNumber}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="lozinka"
+                        name="password"
+                        label="Lozinka"
+                        placeholder="Lozinka"
+                        margin="normal"
+                        value={data.password}
+                        onChange={this.onChange}
+                    /><br />
+                    <TextField
+                        required
+                        id="potvrdaLozinka"
+                        name="potvrdaLozinka"
+                        label="Potvrda lozinke"
+                        placeholder="Potvrda lozinke"
+                        margin="normal"
+                        value={potvrdaLozinka}
+                        onChange={(e) => {
+                            e.preventDefault();
+                            this.setState({
+                                potvrdaLozinka :  e.target.value
+                            });
+                        }}
+                    /><br />
                 </div>
-                : null }
-
-                {this.state.step2 ?
-                <div>
-                    <div>
-                        <TextField
-                            required
-                            id="agencyName"
-                            name="agencyName"
-                            label="Naziv agencije"
-                            placeholder="Naziv agencije"
-                            margin="normal"
-                            value={data.agencyName}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="agencyFullName"
-                            name="agencyFullName"
-                            label="Put naziv agencije"
-                            placeholder="Pun naziv agencije"
-                            margin="normal"
-                            value={data.agencyFullName}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="pib"
-                            name="pib"
-                            label="PIB"
-                            placeholder="PIB"
-                            margin="normal"
-                            value={data.pib}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="agencyUniqueNumber"
-                            name="agencyUniqueNumber"
-                            label="Matični broj agencije"
-                            placeholder="Matični broj agencije"
-                            margin="normal"
-                            value={data.agencyUniqueNumber}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="agencyAccountNumber"
-                            name="agencyAccountNumber"
-                            label="Broj žiro računa"
-                            placeholder="Broj žiro računa"
-                            margin="normal"
-                            value={data.agencyAccountNumber}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="agencyCodeActivity"
-                            name="agencyCodeActivity"
-                            label="Šifra delatnosti sa opisom"
-                            placeholder="Šifra delatnosti sa opisom"
-                            margin="normal"
-                            value={data.agencyCodeActivity}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="dateOfRegistration"
-                            name="dateOfRegistration"
-                            label="Datum registracije agencije"
-                            placeholder="Datum registracije agencije"
-                            margin="normal"
-                            value={data.dateOfRegistration}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="address"
-                            name="address"
-                            label="Grad i poštanski broj"
-                            placeholder="Grad i poštanski broj"
-                            margin="normal"
-                            value={data.address}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="street"
-                            name="street"
-                            label="Ulica sedišta"
-                            placeholder="Ulica sedišta"
-                            margin="normal"
-                            value={data.street}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="streetNumber"
-                            name="streetNumber"
-                            label="Broj sedišta"
-                            placeholder="Broj sedišta"
-                            margin="normal"
-                            value={data.streetNumber}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="phone"
-                            name="phone"
-                            label="Telefon"
-                            placeholder="Telefon"
-                            margin="normal"
-                            value={data.phone}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="agencyEmail"
-                            name="agencyEmail"
-                            label="Email agencije"
-                            placeholder="Email agencije"
-                            margin="normal"
-                            value={data.agencyEmail}
-                            onChange={this.onChange}
-                        /><br />
-                    </div>
-                    <div align="center">
-                        <Button 
-                            type="submit"
-                            variant="raised" 
-                            color="primary" 
-                            onClick={this.goStepTwo}>Sledeci korak
-                        </Button>
-                    </div>
-                    <div style={{marginTop: '30px'}} align="center">
-                        <Button 
-                            type="submit"
-                            variant="raised" 
-                            color="primary" >Nazad
-                        </Button>
-                    </div>
-                </div>
-                : null }
-            </div>
+                <div style={{marginTop: '30px'}} align="center">
+                    <Button 
+                        type="submit"
+                        variant="raised" 
+                        color="primary" >Registruj se
+                    </Button>
+                </div> 
+            </Form>
         )
     }
 }
  
-export default RegisterForm;
+RegisterForm.propTypes = {
+}
 

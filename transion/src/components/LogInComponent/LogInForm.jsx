@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import Button from 'material-ui/Button';
+import ReactDOM from 'react-dom';
+//import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import PropTypes from 'prop-types';
+
+import Form from 'muicss/lib/react/form';
+import Input from 'muicss/lib/react/input';
+import Button from 'muicss/lib/react/button';
 
 export default class LogInForm extends Component {
     
@@ -33,43 +38,43 @@ export default class LogInForm extends Component {
     render() {
         const { data } = this.state;
         return (
-            <div>
-                    <TextField
+            <Form onSubmit={this.onSubmit}>
+                <TextField
                         required
                         id="email"
+                        type="email"
                         name="email"
                         label="Email"
                         placeholder="example@transion.com"
                         margin="normal"
                         value={data.email}
                         onChange={this.onChange}
-                    /><br />   
-                    <TextField
-                        required
-                        id="password"
-                        name="password"
-                        label="Password"
-                        type="password"
-                        margin="normal"
-                        value={data.password}
-                        onChange={this.onChange}
-                    /> <br />  
-                    <div align="center">
-                        <Button 
-                            type="submit"
-                            variant="raised" 
-                            color="primary" 
-                            onClick={this.onSubmit}>Prijavi se
-                        </Button>
+                /><br />   
+                <TextField
+                    required
+                    id="password"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    margin="normal"
+                    value={data.password}
+                    onChange={this.onChange}
+                /> <br />  
+                <div align="center">
+                    <Button 
+                        type="submit"
+                        variant="raised" 
+                        color="primary" 
+                        >Prijavi se
+                    </Button>
 
-                        <hr className="login_type" />
+                    <hr className="login_type" />
 
-                        <p style={{marginTop: '20px'}}> Nemate nalog?
-                            <a onClick={this.goOnSingUp}> Napravite ga sada.</a>
-                        </p>
-                    </div>
-                           
-            </div>
+                    <p style={{marginTop: '20px'}}> Nemate nalog?
+                        <a onClick={this.goOnSingUp}> Napravite ga sada.</a>
+                    </p>
+                </div>
+            </Form>
         )
     }
 }
