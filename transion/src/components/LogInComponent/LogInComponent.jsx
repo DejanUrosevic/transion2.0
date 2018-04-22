@@ -16,7 +16,7 @@ class LogInComponent extends Component {
 
     login = (data) => {
         console.log(data);
-        this.props.login(data);
+        this.props.login(data).then(() => this.props.history.push("/home"));
     }
 
     goOnSingUp = () =>{
@@ -47,6 +47,6 @@ class LogInComponent extends Component {
 
 LogInComponent.propTypes = {
     login : PropTypes.func.isRequired
-  };
+};
 
 export default connect(null, {login})(LogInComponent);

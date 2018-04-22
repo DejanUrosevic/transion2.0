@@ -80,6 +80,6 @@ export default class LogInForm extends Component {
 }
 
 LogInForm.propTypes = {
-    submit :PropTypes.func.isRequred,
+    submit : PropTypes.func.isRequred,
     goOnSingUp : PropTypes.func.isRequired
 }

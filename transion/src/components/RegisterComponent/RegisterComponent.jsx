@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import RegisterForm from './RegisterForm';
 import Container from 'muicss/lib/react/container';
 import {Scrollbars} from 'react-custom-scrollbars';
+import {registrationUser} from '../../actions/userAction';
 
 class RegisterComponent extends Component {
 
@@ -13,6 +14,11 @@ class RegisterComponent extends Component {
         this.state = {
             autoHide : true
         }        
+    }
+
+    registration1 = (userData) => {
+        console.log(userData);
+        this.props.registrationUser(userData);
     }
 
     render() { 
@@ -33,7 +39,7 @@ class RegisterComponent extends Component {
                                 <Scrollbars 
                                     autoHide={this.state.autoHide}
                                     style={{height:'300px'}}>
-                                    <RegisterForm />
+                                    <RegisterForm registration={this.registration1}/>
                                 </Scrollbars>
                             </div>
                         </div>
@@ -45,6 +51,7 @@ class RegisterComponent extends Component {
 }
  
 RegisterComponent.propTypes = {
+    registrationUser : PropTypes.func.isRequired
 }
 
-export default connect(null, {})(RegisterComponent);
+export default connect(null, {registrationUser})(RegisterComponent);
