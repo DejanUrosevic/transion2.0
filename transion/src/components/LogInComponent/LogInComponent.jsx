@@ -20,6 +20,7 @@ class LogInComponent extends Component {
     }
 
     goOnSingUp = () =>{
+        console.log(this.props);
         this.props.history.push("/registracija");
     }
 

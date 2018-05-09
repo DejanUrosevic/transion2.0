@@ -12,7 +12,7 @@ export default class LogInForm extends Component {
     
     state = {
         data: {
-            email: '',
+            username: '',
             password: ''
         }
     }
@@ -41,13 +41,13 @@ export default class LogInForm extends Component {
             <Form onSubmit={this.onSubmit}>
                 <TextField
                         required
-                        id="email"
-                        type="email"
-                        name="email"
-                        label="Email"
+                        id="username"
+                        type="username"
+                        name="username"
+                        label="Username"
                         placeholder="example@transion.com"
                         margin="normal"
-                        value={data.email}
+                        value={data.username}
                         onChange={this.onChange}
                 /><br />   
                 <TextField

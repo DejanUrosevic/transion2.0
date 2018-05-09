@@ -1,5 +1,5 @@
 import userApi from '../api/userApi';
-import {USER_LOGGED_IN, USER_LOGGED_OUT, USER_REGISTRATED} from '../types/userTypes';
+import {USER_LOGGED_IN, USER_LOGGED_OUT, USER_REGISTRATED, USER_FOUND, USER_NOT_FOUND} from '../types/userTypes';
 
 export const userLoggedIn = (user) => ({
     type: USER_LOGGED_IN,
@@ -9,7 +9,7 @@ export const userLoggedIn = (user) => ({
 export const login = credentials => dispatch => 
     userApi.user.login(credentials)
         .then(user => {
-            localStorage.setItem("email", user.email);
+            localStorage.setItem("username", user.username);
             dispatch(userLoggedIn(user));
         });
 
@@ -34,3 +34,21 @@ export const registrationUser = userData => dispatch =>
             dispatch(userRegistration(user));            
         });
 
+export const userFound = (user) => ({
+    type: USER_FOUND,
+    user
+})
+
+export const userNotFound = () => ({
+    type: USER_NOT_FOUND
+})
+
+export const findUserByMail = email => dispatch =>
+    userApi.user.findUserByEmail(email)
+        .then(user => {
+            dispatch(userFound(user));
+            return user;
+        })
+        .catch(error =>{
+            dispatch(userNotFound());
+        })

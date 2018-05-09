@@ -20,7 +20,6 @@ export default class RegisterForm extends Component {
             education: '',
             password: '',
             jmbg: '',
-            email: '',
             phoneNumber: '',
             address: {
                 country: '',
@@ -67,7 +66,55 @@ export default class RegisterForm extends Component {
                 {this.state.step1 ? 
                 <div>
                     <div>
+                        
                         <TextField
+                            required
+                            id="username"
+                            name="username"
+                            label="Korisničko ime"
+                            margin="normal"
+                            value={data.username}
+                            onChange={this.onChange}
+                        /><br />
+                        <TextField
+                            required
+                            id="lozinka"
+                            name="password"
+                            label="Lozinka"
+                            placeholder="Lozinka"
+                            margin="normal"
+                            value={data.password}
+                            onChange={this.onChange}
+                        /><br />
+                        <TextField
+                            required
+                            id="potvrdaLozinka"
+                            name="potvrdaLozinka"
+                            label="Potvrda lozinke"
+                            placeholder="Potvrda lozinke"
+                            margin="normal"
+                            value={potvrdaLozinka}
+                            onChange={(e) => {
+                                e.preventDefault();
+                                this.setState({
+                                    potvrdaLozinka :  e.target.value
+                                });
+                            }}
+                        /><br />
+                    </div>
+                    <div style={{marginTop: '30px'}} align="center">
+                        <Button 
+                            type="button"
+                            variant="raised" 
+                            color="primary" 
+                            onClick={this.nextStep}>Sledeći korak
+                        </Button>
+                    </div> 
+                </div> : null}
+                {this.state.step2 ? 
+                <div>
+                    <div>
+                    <TextField
                             required
                             id="firstname"
                             name="firstname"
@@ -132,15 +179,6 @@ export default class RegisterForm extends Component {
                         /><br />
                         <TextField
                             required
-                            id="email"
-                            name="email"
-                            label="E-mail"
-                            margin="normal"
-                            value={data.email}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
                             id="phoneNumber"
                             name="phoneNumber"
                             label="Telefon"
@@ -148,44 +186,6 @@ export default class RegisterForm extends Component {
                             value={data.phoneNumber}
                             onChange={this.onChange}
                         /><br />
-                        <TextField
-                            required
-                            id="lozinka"
-                            name="password"
-                            label="Lozinka"
-                            placeholder="Lozinka"
-                            margin="normal"
-                            value={data.password}
-                            onChange={this.onChange}
-                        /><br />
-                        <TextField
-                            required
-                            id="potvrdaLozinka"
-                            name="potvrdaLozinka"
-                            label="Potvrda lozinke"
-                            placeholder="Potvrda lozinke"
-                            margin="normal"
-                            value={potvrdaLozinka}
-                            onChange={(e) => {
-                                e.preventDefault();
-                                this.setState({
-                                    potvrdaLozinka :  e.target.value
-                                });
-                            }}
-                        /><br />
-                    </div>
-                    <div style={{marginTop: '30px'}} align="center">
-                        <Button 
-                            type="button"
-                            variant="raised" 
-                            color="primary" 
-                            onClick={this.nextStep}>Sledeći korak
-                        </Button>
-                    </div> 
-                </div> : null}
-                {this.state.step2 ? 
-                <div>
-                    <div>
                         <TextField
                             required
                             id="country"

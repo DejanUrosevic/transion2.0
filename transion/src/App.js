@@ -12,7 +12,7 @@ class App extends Component {
       <div>
         <Route path="/" exact component={LogInComponent} />
         <Route path="/registracija" exact component={RegisterComponent} />
-        <Route path="/home" exact render={() => (
+        <Route path="/home" exact component={() => (
           t !== null ? <HomeComponent /> : <Redirect to="/" />
         )} />
       </div>

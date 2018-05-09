@@ -1,3 +1,5 @@
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
 export const USER_REGISTRATED = "USER_REGISTRATED";
+export const USER_FOUND = "USER_FOUND";
+export const USER_NOT_FOUND = "USER_NOT_FOUND";
